@@ -5,6 +5,7 @@ export class Player {
     this.player = document.createElement('section');
     this.player.setAttribute('class', 'player');
     this.player_life_total = document.createElement('div');
+    this.spanEle = document.createElement('span');
     this.plus_btn1 = document.createElement('button');
     this.minus_btn1 = document.createElement('button');
     this.plus_btn5 = document.createElement('button');
@@ -17,7 +18,7 @@ export class Player {
     this.lifeTotal();
     this.bottomBtns();
     this.updateLife();
-    this.resetLife();
+    // this.resetLife();
     this.container.appendChild(this.player);
   }
   playerName() {
@@ -43,7 +44,8 @@ export class Player {
   }
   lifeTotal() {
     this.player_life_total.setAttribute('class', 'life_total');
-    this.player_life_total.innerHTML = this.life_total;
+    this.spanEle.innerHTML = this.life_total;
+    this.player_life_total.appendChild(this.spanEle);
     this.player.appendChild(this.player_life_total);
   }
   bottomBtns() {
@@ -65,24 +67,32 @@ export class Player {
   updateLife() {
     this.plus_btn1.addEventListener('click', () => {
       this.life_total += 1;
-      this.player_life_total.innerHTML = this.life_total;
+      this.spanEle.innerHTML = this.life_total;
+      this.animateLife();
     });
     this.plus_btn5.addEventListener('click', () => {
       this.life_total += 5;
-      this.player_life_total.innerHTML = this.life_total;
+      this.spanEle.innerHTML = this.life_total;
+      this.animateLife();
     });
     this.minus_btn1.addEventListener('click', () => {
       this.life_total -= 1;
-      this.player_life_total.innerHTML = this.life_total;
+      this.spanEle.innerHTML = this.life_total;
+      this.animateLife();
     });
     this.minus_btn5.addEventListener('click', () => {
       this.life_total -= 5;
-      this.player_life_total.innerHTML = this.life_total;
+      this.spanEle.innerHTML = this.life_total;
+      this.animateLife();
     });
+  }
+
+  animateLife() {
+    this.spanEle.animate([{ opacity: '0.0' }, { opacity: '1.0' }], { duration: 1500, fill: 'forwards' });
   }
 
   resetLife() {
     this.life_total = 20;
-    this.player_life_total.innerHTML = this.life_total;
+    this.spanEle.innerHTML = this.life_total;
   }
 }

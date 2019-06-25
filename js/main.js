@@ -12,7 +12,6 @@ player.createPlayer();
 function dieRoll() {
   roll_die_btn.addEventListener('click', e => {
     die_roll_height.classList.toggle('die_roll_height');
-    //   setInterval(() => die_roll_height.classList.remove("die_roll_height"), 2000);
     //   const newPlayer = new Player("Matt");
     //   newPlayer.createPlayer();
     //   root.style.setProperty("--grid-rule", "1fr 1fr");
@@ -34,7 +33,7 @@ function coinFlip() {
 function resetLifeTotal() {
   reset.addEventListener('click', () => {
     player.resetLife();
-    const player_life_total = document.querySelectorAll('.life_total');
+    const player_life_total = document.querySelectorAll('.life_total span');
     player_life_total.forEach(i => {
       i.innerHTML = player.player_life_total.innerHTML;
     });
