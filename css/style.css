@@ -1,6 +1,7 @@
 :root {
   --grid-rule: 1fr;
   --main-font: 3rem;
+  --nav-height: 70px;
 }
 * {
   padding: 0;
@@ -18,14 +19,16 @@ li {
   list-style-type: none;
 }
 header {
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background: #313131;
-  position: relative;
   padding: 1em 1em;
   color: #fff;
+  width: 100%;
+  height: var(--nav-height);
 }
 header h1 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -48,11 +51,14 @@ header h1 {
 .navbar .fas {
   font-size: 1.1rem;
 }
+.fa-undo:active {
+}
 .main_ul > li button:hover {
   color: #bebebe;
 }
 .die_roll,
-.outcome {
+.outcome,
+.die_outcome {
   position: absolute;
   background: #313131;
   top: 100%;
@@ -66,7 +72,8 @@ header h1 {
 .die_roll_height {
   height: 85px;
 }
-.coin_flip_height {
+.coin_flip_height,
+.die_outcome_height {
   height: 30px;
 }
 .die_roll > ul li {
@@ -74,7 +81,8 @@ header h1 {
   margin-left: 0.5em;
   font-size: 0.7rem;
 }
-.outcome > p {
+.outcome > p,
+.die_outcome > p {
   margin-left: 0.5em;
   font-size: 0.9rem;
 }
@@ -85,7 +93,7 @@ header h1 {
   width: 100%;
   background-color: #d9d9d9;
   background-image: linear-gradient(315deg, #f6f2f2 0%, #d9d9d9 74%);
-  padding: 2em 0;
+  padding: calc(var(--nav-height) + 2rem) 0;
 }
 .player {
   margin: auto;
