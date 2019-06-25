@@ -40,11 +40,14 @@ function resetLifeTotal() {
     });
   });
 }
-// body.addEventListener(e => {
-//   if (e.target != roll_die_btn) {
-//     die_roll_height.classList.remove("die_roll_height");
-//   }
-// });
+window.addEventListener('click', e => {
+  if (e.target != roll_die_btn) {
+    die_roll_height.classList.remove('die_roll_height');
+  }
+  if (e.target != coin_flip_btn) {
+    outcome.classList.remove('coin_flip_height');
+  }
+});
 
 dieRoll();
 coinFlip();
