@@ -11,7 +11,7 @@
   <body>
     <header>
       <h1>MTG Life Counter</h1>
-      <div class="navbar">
+      <nav class="navbar">
         <ul class="main_ul">
           <li>
             <button class="reset"><i class="fas fa-undo"></i></button>
@@ -39,13 +39,32 @@
             <button class="settings"><i class="fas fa-cog"></i></button>
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
     <!-- Header -->
     <main>
       <div class="container"></div>
       <!-- Container -->
     </main>
+    <section class="settings_nav">
+      <nav>
+        <div class="player_section">
+          <p>New Player</p>
+          <div class="player_name">
+            <input type="text" placeholder="Enter player name" />
+          </div>
+          <div class="num_players">
+            <button class="add_player">+</button>
+            <button class="minus_player">-</button>
+          </div>
+        </div>
+        <!-- Player -->
+        <div class="set_life_total">
+          <input type="text" placeholder="Enter new life total" />
+          <button class="submit_life">submit</button>
+        </div>
+      </nav>
+    </section>
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

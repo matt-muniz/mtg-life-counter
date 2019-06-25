@@ -11,10 +11,39 @@ const reset = document.querySelector('.reset');
 const d20 = document.querySelector('.d20');
 const d12 = document.querySelector('.d12');
 const d6 = document.querySelector('.d6');
+const settings_btn = document.querySelector('.settings');
+const player_name = document.querySelector('.player_name input');
+const add_player = document.querySelector('.add_player');
+const minus_player = document.querySelector('.minus_player');
+const player_arr = [];
 let root = document.documentElement;
 
 const player = new Player('Matt');
 player.createPlayer();
+
+function createNewPlayer() {
+  add_player.addEventListener('click', () => {
+    const newPlayer = new Player(player_name.value);
+    newPlayer.createPlayer();
+    root.style.setProperty('--grid-rule', '1fr 1fr');
+    player_arr.push(newPlayer);
+  });
+}
+
+function removePlayer() {
+  minus_player.addEventListener('click', () => {
+    if (player_arr.length > 0) {
+      const last = player_arr.pop();
+      const container = document.querySelector('.container');
+      const remove_player = document.querySelector('.player');
+      container.removeChild(last.player);
+    }
+    if (player_arr.length == 0) {
+      root.style.setProperty('--grid-rule', '1fr');
+    }
+  });
+}
+
 function dieRoll() {
   roll_die_btn.addEventListener('click', e => {
     die_roll_height.classList.toggle('die_roll_height');
@@ -43,6 +72,12 @@ function resetLifeTotal() {
     });
   });
 }
+function settings() {
+  settings_btn.addEventListener('click', () => {
+    const settings_nav = document.querySelector('.settings_nav');
+    settings_nav.classList.toggle('move_left');
+  });
+}
 window.addEventListener('click', e => {
   if (e.target != roll_die_btn && e.target != die_roll_height && e.target != die_roll_ul) {
     die_roll_height.classList.remove('die_roll_height');
@@ -67,9 +102,9 @@ window.addEventListener('click', e => {
   }
 });
 
+createNewPlayer();
+removePlayer();
 dieRoll();
 coinFlip();
 resetLifeTotal();
-//   const newPlayer = new Player("Matt");
-//   newPlayer.createPlayer();
-//   root.style.setProperty("--grid-rule", "1fr 1fr");
+settings();
