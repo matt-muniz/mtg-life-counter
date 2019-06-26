@@ -12,10 +12,13 @@ const d20 = document.querySelector('.d20');
 const d12 = document.querySelector('.d12');
 const d6 = document.querySelector('.d6');
 const settings_btn = document.querySelector('.settings');
+const settings_nav = document.querySelector('.settings_nav');
 const player_name = document.querySelector('.player_name input');
 const add_player = document.querySelector('.add_player');
 const minus_player = document.querySelector('.minus_player');
+const set_life_total = document.querySelector('.set_life_total input');
 const player_arr = [];
+
 let root = document.documentElement;
 
 const player = new Player('Matt');
@@ -23,11 +26,16 @@ player.createPlayer();
 
 function createNewPlayer() {
   add_player.addEventListener('click', () => {
-    const newPlayer = new Player(player_name.value);
-    newPlayer.createPlayer();
-    root.style.setProperty('--grid-rule', '1fr 1fr');
-    player_arr.push(newPlayer);
+    player_name.value == '' ? players('Player') : players(player_name.value);
   });
+}
+
+function players(playerName) {
+  const newPlayer = new Player(playerName);
+  newPlayer.createPlayer();
+  root.style.setProperty('--grid-rule', '1fr 1fr');
+  player_arr.push(newPlayer);
+  newPlayer.checkForLifeValue(newPlayer);
 }
 
 function removePlayer() {
@@ -74,7 +82,6 @@ function resetLifeTotal() {
 }
 function settings() {
   settings_btn.addEventListener('click', () => {
-    const settings_nav = document.querySelector('.settings_nav');
     settings_nav.classList.toggle('move_left');
   });
 }
@@ -84,6 +91,9 @@ window.addEventListener('click', e => {
   }
   if (e.target != coin_flip_btn) {
     outcome.classList.remove('coin_flip_height');
+  }
+  if (e.target != settings_btn && e.target != document.querySelector('.fa-cog') && e.target != settings_nav && e.target != player_name && e.target != set_life_total) {
+    settings_nav.classList.remove('move_left');
   }
   if (e.target == d20) {
     die_outcome.classList.toggle('die_outcome_height');

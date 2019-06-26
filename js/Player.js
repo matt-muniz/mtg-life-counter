@@ -1,7 +1,8 @@
 export class Player {
   constructor(name) {
     this.name = name;
-    this.life_total = 20;
+    this.life = 20;
+    this.life_total = this.life;
     this.player = document.createElement('section');
     this.player.setAttribute('class', 'player');
     this.player_life_total = document.createElement('div');
@@ -18,6 +19,7 @@ export class Player {
     this.lifeTotal();
     this.bottomBtns();
     this.updateLife();
+    this.updateNewLife();
     // this.resetLife();
     this.container.appendChild(this.player);
   }
@@ -86,13 +88,36 @@ export class Player {
       this.animateLife();
     });
   }
+  updateNewLife() {
+    const submit_life = document.querySelector('.submit_life');
+    submit_life.addEventListener('click', () => {
+      this.checkForLifeValue(this);
 
+      const player_life_total = document.querySelectorAll('.life_total span');
+      player_life_total.forEach(i => {
+        i.innerHTML = this.spanEle.innerHTML;
+      });
+    });
+  }
+  checkForLifeValue(obj) {
+    const set_life_total = document.querySelector('.set_life_total input');
+
+    if (set_life_total.value == '') {
+      obj.life = 20;
+      obj.life_total = obj.life;
+      obj.spanEle.innerHTML = obj.life_total;
+    } else {
+      obj.life = parseInt(set_life_total.value);
+      obj.life_total = obj.life;
+      obj.spanEle.innerHTML = obj.life_total;
+    }
+  }
   animateLife() {
     this.spanEle.animate([{ opacity: '0.0' }, { opacity: '1.0' }], { duration: 1500, fill: 'forwards' });
   }
 
   resetLife() {
-    this.life_total = 20;
-    this.spanEle.innerHTML = this.life_total;
+    this.life_total = this.life;
+    this.spanEle.innerHTML = this.life;
   }
 }
