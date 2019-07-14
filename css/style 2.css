@@ -32,8 +32,7 @@ header {
   z-index: 1;
 }
 header h1 {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .main_ul > li {
   display: inline-block;
@@ -47,7 +46,7 @@ header h1 {
   cursor: pointer;
   outline: none;
   font-size: 1rem;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   transition: color 250ms ease-in-out;
 }
 .navbar .fas {
@@ -75,11 +74,6 @@ header h1 {
 .coin_flip_height,
 .die_outcome_height {
   height: 30px;
-}
-.coin_flip img {
-  width: 30px;
-  background: red;
-  color: #fff;
 }
 .die_roll > ul li {
   margin-bottom: 1em;
@@ -136,21 +130,19 @@ header h1 {
 .life_total span {
   font-size: 5rem;
   font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
 }
 .settings_nav {
   position: fixed;
   top: calc(var(--nav-height));
-  right: -290px;
+  right: -20%;
   height: 100%;
-  background: rgba(49, 49, 49, 0.8);
+  background: #313131;
   width: 20%;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
-  transition: right 1s ease-in;
 }
 .move_left {
-  right: 0%;
-  /* animation: moveLeft 3s forwards; */
+  animation: moveLeft 3s forwards;
 }
 .player_section,
 .set_life_total {
@@ -165,7 +157,7 @@ header h1 {
   cursor: pointer;
   padding: 0.5em 2em;
 }
-input[type="text"] {
+input[type='text'] {
   -webkit-appearance: none;
   width: 80%;
   padding: 0.5em;
@@ -181,28 +173,10 @@ input[type="text"] {
   flex-direction: column;
   align-items: center;
 }
-@media (max-width: 750px) {
-  :root {
-    --nav-height: 90px;
-  }
-  header {
-    display: block;
-    text-align: center;
-  }
-  header h1 {
-    font-size: calc(1vw + 1rem);
-    margin-bottom: 0.5em;
-  }
-  .main_ul > li {
-    padding-left: 1em;
-  }
-  .main_ul > li button,
-  .navbar .fas {
-    font-size: calc(1vw + 0.5rem);
-  }
-  .settings_nav {
-    right: -100%;
-    width: 100%;
+@keyframes moveLeft {
+  to {
+    right: 0%;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.3);
   }
 }
 @media only screen and (orientation: landscape) {
